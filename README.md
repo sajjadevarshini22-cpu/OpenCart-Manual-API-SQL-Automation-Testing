@@ -63,5 +63,24 @@ OpenCart - E-Commerce Platform
 - Automated important functional flows using Selenium Java and TestNG.
 - Practiced end-to-end QA project documentation.
 
+  ## Manual Testing Artifacts
+
+The file `OpenCart_Complete_Testing_Project.xlsx` contains manual QA documentation including:
+
+- Test Scenarios
+- Test Cases
+- Positive Test Cases
+- Negative Test Cases
+- Edge Test Cases
+- Bug Reports
+- Test Execution Report
+
+  ## Project Files Included
+- `OpenCart_Complete_Testing_Project.xlsx` - Manual test scenarios, test cases, bug reports, and execution report
+- `OpenCart_API_15_Test_Cases.postman_collection.json` - Postman API test collection
+- `OpenCart_Local_API_Environment.postman_environment.json` - Postman environment file
+- `OpenCart_SQL_Database_Validation_Queries.sql` - SQL database validation queries
+- `OpenCart_Selenium_TestNG_Project/` - Selenium Java TestNG automation framework
+
 ## Learning Outcome
 This project helped me gain practical QA experience in manual testing, API testing, database validation, and basic automation testing using Selenium Java.
