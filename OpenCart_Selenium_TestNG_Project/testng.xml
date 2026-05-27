@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="OpenCart Regression Suite" parallel="false">
+  <parameter name="browser" value="chrome"/>
+  <test name="OpenCart UI Automation Tests">
+    <classes>
+      <class name="com.opencart.tests.OpenCartAutomationTests"/>
+    </classes>
+  </test>
+</suite>

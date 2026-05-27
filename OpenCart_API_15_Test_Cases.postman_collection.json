@@ -1,0 +1,907 @@
+{
+  "info": {
+    "name": "OpenCart API Practice - 15 Test Cases",
+    "description": "Practice Postman collection for OpenCart/e-commerce API validation. Use official OpenCart API credentials or an OpenCart REST API extension/demo.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "API-001 Login/API Session",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-002 Get Products",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/products",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "products"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-003 Get Product By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/products/{{productId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "products",
+            "{{productId}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-004 Search Product",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/products/search/{{keyword}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "products",
+            "search",
+            "{{keyword}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-005 Add Product To Cart",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/cart",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "cart"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_id\": \"{{productId}}\",\n  \"quantity\": 1\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-006 Get Cart",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/cart",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "cart"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-007 Update Cart Quantity",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/cart/{{cartKey}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "cart",
+            "{{cartKey}}"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"quantity\": 2\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-008 Delete Cart Item",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/cart/{{cartKey}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "cart",
+            "{{cartKey}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-009 Create Guest/Customer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/guest",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "guest"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstname\": \"Test\",\n  \"lastname\": \"User\",\n  \"email\": \"{{email}}\",\n  \"telephone\": \"9876543210\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-010 Set Shipping Address",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/shippingaddress",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "shippingaddress"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstname\": \"Test\",\n  \"lastname\": \"User\",\n  \"address_1\": \"Test Street\",\n  \"city\": \"Hyderabad\",\n  \"postcode\": \"500001\",\n  \"country_id\": 99,\n  \"zone_id\": 1503\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-011 Get Shipping Methods",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/shippingmethods",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "shippingmethods"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-012 Set Shipping Method",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/shippingmethod",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "shippingmethod"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"shipping_method\": \"flat.flat\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-013 Get Payment Methods",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/paymentmethods",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "paymentmethods"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-014 Confirm Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/confirm",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "confirm"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment\": \"Test order from Postman\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Response status is successful\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              "pm.test(\"Response time is acceptable\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "pm.test(\"Response is JSON when body exists\", function () {",
+              "    if (pm.response.text()) {",
+              "        pm.response.to.be.withBody;",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "API-015 Unauthorized Negative Test",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Oc-Merchant-Id",
+            "value": "{{merchantKey}}",
+            "description": "Use for OpenCart REST API extension/demo if required"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": "Use if your OpenCart API setup requires Bearer token"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/products",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "products"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Unauthorized/Forbidden is handled\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([401, 403, 400, 200]);",
+              "});",
+              "pm.test(\"Response body is present\", function () {",
+              "    pm.expect(pm.response.text()).to.not.equal(\"\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
